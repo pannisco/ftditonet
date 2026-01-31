@@ -1,0 +1,2 @@
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet\dmxtonet\bin\Release\net10.0\osx-arm64\publish\dmxtonet.pdb
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet\dmxtonet\bin\Release\net10.0\osx-arm64\publish\dmxtonet

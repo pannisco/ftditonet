@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>dmxtonet</id>
+    <version>1.0.0</version>
+    <authors>dmxtonet</authors>
+    <icon>Grafica1.png</icon>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net10.0">
+        <dependency id="LXProtocols.ArtNet" version="3.0.8.2" exclude="Build,Analyzers" />
+        <dependency id="System.IO.Ports" version="10.0.2" exclude="Build,Analyzers" />
+        <dependency id="System.Management" version="10.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net10.0/Grafica1.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet\dmxtonet\bin\Debug\net10.0\dmxtonet.runtimeconfig.json" target="lib\net10.0\dmxtonet.runtimeconfig.json" />
+    <file src="C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet\dmxtonet\bin\Debug\net10.0\dmxtonet.dll" target="lib\net10.0\dmxtonet.dll" />
+    <file src="C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet\dmxtonet\Grafica1.ico" target="content\Grafica1.ico" />
+    <file src="C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet\dmxtonet\Grafica1.ico" target="contentFiles\any\net10.0\Grafica1.ico" />
+    <file src="C:\Users\Peppe\Desktop\Grafica1.png" target="\Grafica1.png" />
+  </files>
+</package>
