@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj": {}
+    "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj": {
+    "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
+        "projectUniqueName": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
         "projectName": "dmxtonet",
-        "projectPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
+        "projectPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
         "packagesPath": "C:\\Users\\Peppe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\obj\\",
+        "outputPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Peppe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,10 +46,6 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
-            "FTD2XX_NET": {
-              "target": "Package",
-              "version": "[1.0.14, )"
-            },
             "LXProtocols.ArtNet": {
               "target": "Package",
               "version": "[3.0.8.2, )"

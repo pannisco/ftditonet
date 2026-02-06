@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "K0329yRvqBY=",
+  "dgSpecHash": "izJ/8OcG4T0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
+  "projectFilePath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Peppe\\.nuget\\packages\\ftd2xx_net\\1.0.14\\ftd2xx_net.1.0.14.nupkg.sha512",
     "C:\\Users\\Peppe\\.nuget\\packages\\lxprotocols.acn\\3.0.8.2\\lxprotocols.acn.3.0.8.2.nupkg.sha512",
     "C:\\Users\\Peppe\\.nuget\\packages\\lxprotocols.artnet\\3.0.8.2\\lxprotocols.artnet.3.0.8.2.nupkg.sha512",
     "C:\\Users\\Peppe\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.2\\microsoft.net.illink.tasks.10.0.2.nupkg.sha512",
@@ -28,22 +27,9 @@
     "C:\\Users\\Peppe\\.nuget\\packages\\system.codedom\\10.0.2\\system.codedom.10.0.2.nupkg.sha512",
     "C:\\Users\\Peppe\\.nuget\\packages\\system.io.ports\\10.0.2\\system.io.ports.10.0.2.nupkg.sha512",
     "C:\\Users\\Peppe\\.nuget\\packages\\system.management\\10.0.2\\system.management.10.0.2.nupkg.sha512",
-    "C:\\Users\\Peppe\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\10.0.2\\microsoft.aspnetcore.app.runtime.win-x64.10.0.2.nupkg.sha512",
+    "C:\\Users\\Peppe\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\10.0.2\\microsoft.netcore.app.runtime.win-x64.10.0.2.nupkg.sha512",
     "C:\\Users\\Peppe\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\10.0.2\\microsoft.windowsdesktop.app.runtime.win-x64.10.0.2.nupkg.sha512",
-    "C:\\Users\\Peppe\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\10.0.2\\microsoft.netcore.app.runtime.win-x64.10.0.2.nupkg.sha512"
+    "C:\\Users\\Peppe\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\10.0.2\\microsoft.aspnetcore.app.runtime.win-x64.10.0.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "message": "Package 'FTD2XX_NET 1.0.14' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
-      "libraryId": "FTD2XX_NET",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }

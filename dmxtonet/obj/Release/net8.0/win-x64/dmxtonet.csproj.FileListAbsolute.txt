@@ -1,0 +1,5 @@
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet - Copy (2)\dmxtonet\obj\Release\net8.0\win-x64\dmxtonet.csproj.AssemblyReference.cache
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet - Copy (2)\dmxtonet\obj\Release\net8.0\win-x64\dmxtonet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet - Copy (2)\dmxtonet\obj\Release\net8.0\win-x64\dmxtonet.AssemblyInfoInputs.cache
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet - Copy (2)\dmxtonet\obj\Release\net8.0\win-x64\dmxtonet.AssemblyInfo.cs
+C:\Users\Peppe\Desktop\DMX to ARTNET\dmxtonet - Copy (2)\dmxtonet\obj\Release\net8.0\win-x64\dmxtonet.csproj.CoreCompileInputs.cache

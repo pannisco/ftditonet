@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     "net10.0": {
-      "FTD2XX_NET/1.0.14": {
-        "type": "package",
-        "compile": {
-          "lib/net40/FTD2XX_NET.dll": {
-            "related": ".XML"
-          }
-        },
-        "runtime": {
-          "lib/net40/FTD2XX_NET.dll": {
-            "related": ".XML"
-          }
-        }
-      },
       "LXProtocols.Acn/3.0.8.2": {
         "type": "package",
         "compile": {
@@ -1243,19 +1230,6 @@
       }
     },
     "net10.0/win-x64": {
-      "FTD2XX_NET/1.0.14": {
-        "type": "package",
-        "compile": {
-          "lib/net40/FTD2XX_NET.dll": {
-            "related": ".XML"
-          }
-        },
-        "runtime": {
-          "lib/net40/FTD2XX_NET.dll": {
-            "related": ".XML"
-          }
-        }
-      },
       "LXProtocols.Acn/3.0.8.2": {
         "type": "package",
         "compile": {
@@ -1413,22 +1387,6 @@
     }
   },
   "libraries": {
-    "FTD2XX_NET/1.0.14": {
-      "sha512": "6q0G72pfCyUzX41H9f2X9OYwWzVC+++G5MtWsSnmzORBpQF/9Sz3jjpIeTqoaMMz2oLZkvCTHZcUisiOZMnExQ==",
-      "type": "package",
-      "path": "ftd2xx_net/1.0.14",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ftd2xx_net.1.0.14.nupkg.sha512",
-        "ftd2xx_net.nuspec",
-        "lib/net35/FTD2XX_NET.XML",
-        "lib/net35/FTD2XX_NET.dll",
-        "lib/net40/FTD2XX_NET.XML",
-        "lib/net40/FTD2XX_NET.dll",
-        "src/FTD2XX_NET.cs"
-      ]
-    },
     "LXProtocols.Acn/3.0.8.2": {
       "sha512": "8w2gRtOJsvw+lJz4iDFw4woHCzCnAXSKBCEptpF2pzJ4ao2gl6+ODllTGY/fxzSel3CSPad8aBJCvUsgCZZM2w==",
       "type": "package",
@@ -2120,7 +2078,6 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "FTD2XX_NET >= 1.0.14",
       "LXProtocols.ArtNet >= 3.0.8.2",
       "Microsoft.NET.ILLink.Tasks >= 10.0.2",
       "System.IO.Ports >= 10.0.2",
@@ -2133,11 +2090,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
+      "projectUniqueName": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
       "projectName": "dmxtonet",
-      "projectPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\dmxtonet.csproj",
+      "projectPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
       "packagesPath": "C:\\Users\\Peppe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet\\dmxtonet\\obj\\",
+      "outputPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Peppe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2172,10 +2129,6 @@
       "net10.0": {
         "targetAlias": "net10.0",
         "dependencies": {
-          "FTD2XX_NET": {
-            "target": "Package",
-            "version": "[1.0.14, )"
-          },
           "LXProtocols.ArtNet": {
             "target": "Package",
             "version": "[3.0.8.2, )"
@@ -2507,17 +2460,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FTD2XX_NET 1.0.14' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
-      "libraryId": "FTD2XX_NET",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }
