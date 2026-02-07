@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6BA57B48-FCE0-8897-CFE1-3A222C838DE5}|dmxtonet\\dmxtonet.csproj|c:\\users\\peppe\\desktop\\dmx to artnet\\dmxtonet - copy (2)\\dmxtonet\\dmxtonet.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6BA57B48-FCE0-8897-CFE1-3A222C838DE5}|dmxtonet\\dmxtonet.csproj|solutionrelative:dmxtonet\\dmxtonet.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6BA57B48-FCE0-8897-CFE1-3A222C838DE5}|dmxtonet\\dmxtonet.csproj|c:\\users\\peppe\\desktop\\dmx to artnet\\dmxtonet - copy (2)\\dmxtonet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6BA57B48-FCE0-8897-CFE1-3A222C838DE5}|dmxtonet\\dmxtonet.csproj|solutionrelative:dmxtonet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA57B48-FCE0-8897-CFE1-3A222C838DE5}|dmxtonet\\dmxtonet.csproj|c:\\users\\peppe\\desktop\\dmx to artnet\\dmxtonet - copy (2)\\dmxtonet\\dmxtonet.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6BA57B48-FCE0-8897-CFE1-3A222C838DE5}|dmxtonet\\dmxtonet.csproj|solutionrelative:dmxtonet\\dmxtonet.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "dmxtonet",
+              "DocumentIndex": 1,
+              "Title": "dmxtonet.csproj",
               "DocumentMoniker": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
               "RelativeDocumentMoniker": "dmxtonet\\dmxtonet.csproj",
               "ToolTip": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\dmxtonet.csproj",
               "RelativeToolTip": "dmxtonet\\dmxtonet.csproj",
-              "ViewState": "AgIAAAUAAAAAAAAAAAApwEAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2026-02-06T22:45:02.428Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\Program.cs",
               "RelativeDocumentMoniker": "dmxtonet\\Program.cs",
               "ToolTip": "C:\\Users\\Peppe\\Desktop\\DMX to ARTNET\\dmxtonet - Copy (2)\\dmxtonet\\Program.cs",
               "RelativeToolTip": "dmxtonet\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALIAAAAAAAAAAAAAALYAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-14T16:42:46.144Z",
               "EditorCaption": ""

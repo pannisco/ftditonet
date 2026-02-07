@@ -1,4 +1,4 @@
-﻿// FTDI to NET v. 1.7
+﻿// FTDI to NET v. 1.8
 // Made by Pannisco Software (Italy)
 // https://github.com/pannisco/ftditonet
 
@@ -6,10 +6,16 @@ using LXProtocols.Acn.Rdm;
 using LXProtocols.Acn.Sockets;
 using LXProtocols.ArtNet.Packets;
 using LXProtocols.ArtNet.Sockets;
+using System;
 using System.IO.Ports;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Text;
 using System.Text.Json;
+using System.Diagnostics;
+using System.Linq;
+using System.IO;
+using System.Threading;
 
 namespace dmxtonet
 {
@@ -49,7 +55,7 @@ namespace dmxtonet
     class Program
     {
         // VARs
-        static SerialPort _serialPort;
+        static SerialPort _serialPort = null!;
         static byte[] _dmxArray = new byte[512];
         static readonly object _lock = new object();
         static bool _keepRunning = true;
@@ -57,9 +63,14 @@ namespace dmxtonet
         static string targetIp = SettingsManager.Load().TargetIp;
         static int universe = SettingsManager.Load().Universe;
         static bool com = SettingsManager.Load().ManualCOM;
-        static IPAddress localIp = GetInterfaceIp(interfaceName);
-        static ArtNetSocket socket;
+        static IPAddress? localIp = GetInterfaceIp(interfaceName);
+        static ArtNetSocket socket = null!;
         static readonly ArtNetDmxPacket _reusablePacket = new ArtNetDmxPacket();
+        static readonly byte[] _tempDmxBuffer = new byte[512];
+
+        // Diagnostica
+        static int corruptedPackets = 0;
+        static int validPackets = 0;
 
         static void Main(string[] args)
         {
@@ -79,13 +90,13 @@ namespace dmxtonet
                 Console.WriteLine($"\n[ERROR]: No COM ports found!");
                 return;
             }
-            
+
             string selectedPort;
             if (com)
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("\n[INFO] Enter COM port (ex. COM3): ");
-                selectedPort = Console.ReadLine();
+                selectedPort = Console.ReadLine() ?? ports[0];
             }
             else
             {
@@ -94,9 +105,15 @@ namespace dmxtonet
 
             // Serial settings
             _serialPort = new SerialPort(selectedPort, 57600);
-            _serialPort.NewLine = "\r\n";       
-            _serialPort.ReadTimeout = 2000;     
+            _serialPort.NewLine = "\r\n";
+            _serialPort.ReadTimeout = 100;
+            _serialPort.WriteTimeout = 100;
             _serialPort.DtrEnable = true;
+            _serialPort.RtsEnable = false;
+            _serialPort.Handshake = Handshake.None;
+            _serialPort.ReadBufferSize = 8192;
+            _serialPort.WriteBufferSize = 2048;
+            _serialPort.ReceivedBytesThreshold = 1;
 
             // Assign an UID and a Socket 
             var rdmId = new UId(0x1234, 0x56789ABC);
@@ -105,9 +122,16 @@ namespace dmxtonet
             // Open the socket 
             try
             {
-                socket.Open(localIp, IPAddress.Parse(targetIp));
+                if (localIp != null)
+                {
+                    socket.Open(localIp, IPAddress.Parse(targetIp));
+                }
+                else
+                {
+                    socket.Open(IPAddress.Any, IPAddress.Parse(targetIp));
+                }
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine($"[INFO]: ArtNET socket opened on {localIp} -> {targetIp}");
+                Console.WriteLine($"[INFO]: ArtNET socket opened on {localIp ?? IPAddress.Any} -> {targetIp}");
                 Console.WriteLine($"[INFO]: ArtNET Universe: {universe}");
             }
             catch (Exception ex)
@@ -132,6 +156,7 @@ namespace dmxtonet
             {
                 _serialPort.Open();
                 _serialPort.DiscardInBuffer();
+                _serialPort.DiscardOutBuffer();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine($"[OK] Serial port {selectedPort} opened!");
             }
@@ -142,11 +167,20 @@ namespace dmxtonet
                 return;
             }
 
+            // Process priority
+            try
+            {
+                Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("[INFO] Process priority set to HIGH");
+            }
+            catch { }
+
             // Serial read thread
             Thread readThread = new Thread(ReadSerialData);
             readThread.IsBackground = true;
+            readThread.Priority = ThreadPriority.Highest;
             readThread.Start();
-
 
             // UI
             Console.CursorVisible = false;
@@ -163,41 +197,107 @@ namespace dmxtonet
         // Read data
         private static void ReadSerialData()
         {
-            while (_serialPort.IsOpen)
+            int consecutiveErrors = 0;
+
+            while (_serialPort.IsOpen && _keepRunning)
             {
                 try
                 {
                     string rawData = _serialPort.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(rawData) && rawData.Contains(";"))
-                    {
-                        string cleanData = rawData.Trim().Replace(";", "");
-                        string[] stringValues = cleanData.Split(',');
 
-                        lock (_lock)
+                    // VALIDAZIONE 1: Controllo base
+                    if (string.IsNullOrWhiteSpace(rawData) || !rawData.Contains(';'))
+                    {
+                        continue;
+                    }
+
+                    // VALIDAZIONE 2: Estrai dati puliti
+                    int semicolonIndex = rawData.IndexOf(';');
+                    string cleanData = semicolonIndex >= 0
+                        ? rawData.Substring(0, semicolonIndex).Trim()
+                        : rawData.Trim();
+
+                    // VALIDAZIONE 3: Verifica formato
+                    if (string.IsNullOrEmpty(cleanData))
+                    {
+                        continue;
+                    }
+
+                    string[] values = cleanData.Split(',');
+
+                    // VALIDAZIONE 4: Numero di canali ragionevole
+                    if (values.Length < 1 || values.Length > 512)
+                    {
+                        corruptedPackets++;
+                        continue;
+                    }
+
+                    // VALIDAZIONE 5: Parse con controllo errori
+                    bool isValid = true;
+                    int parsedCount = 0;
+
+                    // Azzera buffer temporaneo
+                    Array.Clear(_tempDmxBuffer, 0, 512);
+
+                    for (int i = 0; i < values.Length && i < 512; i++)
+                    {
+                        string val = values[i].Trim();
+
+                        // VALIDAZIONE 6: Controlla che sia un numero valido
+                        if (string.IsNullOrEmpty(val) || val.Length > 3)
                         {
-                            int limit = Math.Min(stringValues.Length, 512);
-                            for (int i = 0; i < limit; i++)
-                            {
-                                if (byte.TryParse(stringValues[i], out byte val))
-                                {
-                                    _dmxArray[i] = val;
-                                }
-                            }
-                            SendPacket(socket, _dmxArray, universe);
+                            isValid = false;
+                            break;
+                        }
+
+                        if (byte.TryParse(val, out byte byteVal))
+                        {
+                            _tempDmxBuffer[i] = byteVal;
+                            parsedCount++;
+                        }
+                        else
+                        {
+                            isValid = false;
+                            break;
                         }
                     }
+
+                    // VALIDAZIONE 7: Invia solo se tutto valido
+                    if (isValid && parsedCount > 0)
+                    {
+                        lock (_lock)
+                        {
+                            Buffer.BlockCopy(_tempDmxBuffer, 0, _dmxArray, 0, 512);
+                        }
+
+                        SendPacket(socket, _dmxArray, universe);
+                        validPackets++;
+                    }
+                    else
+                    {
+                        corruptedPackets++;
+                    }
+
+                    consecutiveErrors = 0;
                 }
                 catch (TimeoutException)
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("[ERROR]: Data is not valid.");
+                    consecutiveErrors++;
+                    if (consecutiveErrors > 100)
+                    {
+                        Console.WriteLine("[WARNING] No data received");
+                        consecutiveErrors = 0;
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"[ERROR]: {ex}.");
+                    consecutiveErrors++;
+                    if (consecutiveErrors > 10)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"[ERROR]: {ex.Message}");
+                        consecutiveErrors = 0;
+                    }
                 }
             }
         }
@@ -209,6 +309,7 @@ namespace dmxtonet
             _reusablePacket.DmxData = dmxData;
             socket.Send(_reusablePacket);
         }
+
 
         // Get interface ip
         static IPAddress? GetInterfaceIp(string name)
